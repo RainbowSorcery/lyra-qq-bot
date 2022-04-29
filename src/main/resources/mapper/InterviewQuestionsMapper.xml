@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyra.qqbot.mapper.InterviewQuestionsMapper">
+
+    <select id="getInterviewQuestionCount" resultType="java.lang.Long">
+        select count(*) as count from interview_questions;
+    </select>
+    <select id="selectOneInterviewQuestion" resultType="com.lyra.qqbot.entity.InterviewQuestionsEntity"
+            parameterType="java.lang.Long">
+        select * from interview_questions limit #{randomCount}, 1;
+    </select>
+</mapper>
