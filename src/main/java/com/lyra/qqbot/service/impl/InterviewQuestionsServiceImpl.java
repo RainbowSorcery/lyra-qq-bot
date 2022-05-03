@@ -32,8 +32,8 @@ public class InterviewQuestionsServiceImpl extends ServiceImpl<InterviewQuestion
                 "该题被输出：" + interviewQuestionsEntity.getPrintCount() + "次。";
 
 
-
-        SendMessageResultEntity sendMessageResultEntity = qqBotUtils.sendMessage(messageType, userId, groupId, sendMessage);
+        String replaceSendMessage = sendMessage.replace(";", "");
+        SendMessageResultEntity sendMessageResultEntity = qqBotUtils.sendMessage(messageType, userId, groupId, replaceSendMessage);
 
         if (sendMessageResultEntity.getStatus().equals("failed")) {
             throw new MyGraceException("错误信息：" + sendMessageResultEntity.getWording(), messageType, userId, groupId);
