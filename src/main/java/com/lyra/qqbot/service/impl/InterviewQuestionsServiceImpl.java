@@ -33,7 +33,7 @@ public class InterviewQuestionsServiceImpl extends ServiceImpl<InterviewQuestion
 
 
         String replaceSendMessage = sendMessage.replace(";", "");
-        SendMessageResultEntity sendMessageResultEntity = qqBotUtils.sendMessage(messageType, userId, groupId, replaceSendMessage);
+        SendMessageResultEntity sendMessageResultEntity = qqBotUtils.sendMessage(messageType, userId, groupId, replaceSendMessage, true);
 
         if (sendMessageResultEntity.getStatus().equals("failed")) {
             throw new MyGraceException("错误信息：" + sendMessageResultEntity.getWording(), messageType, userId, groupId);

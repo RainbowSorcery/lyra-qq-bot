@@ -112,6 +112,6 @@ public class SignServiceImpl implements ISignService {
             return e.getLog() + "\t" + e.getCreateDate() + "\n";
         }).collect(Collectors.joining());
 
-        qqBotUtils.sendMessage(messageType, userId, groupId, logMessage);
+        qqBotUtils.sendMessage(messageType, userId, groupId, logMessage, true);
     }
 }

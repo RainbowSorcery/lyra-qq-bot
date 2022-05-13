@@ -15,14 +15,14 @@ public class QQBotUtils {
     @Autowired
     private CqHttpResouce cqHttpResouce;
 
-    public SendMessageResultEntity sendMessage(String messageType, Long userId, Long groupId, String message) {
+    public SendMessageResultEntity sendMessage(String messageType, Long userId, Long groupId, String message, Boolean autoEscape) {
         String sendMessageUrl = "";
         if (messageType.equals(MessageType.GROUP_MESSAGE.getType())) {
             sendMessageUrl = cqHttpResouce.getServer() + HttpAPI.SEND_MESSAGE +
-                    "?message_type=" + messageType + "&group_id=" + groupId + "&message=" + message;
+                    "?message_type=" + messageType + "&group_id=" + groupId + "&message=" + message + "&auto_escape=" + autoEscape;
         } else if (messageType.equals(MessageType.PRIVATE_MESSAGE.getType())) {
             sendMessageUrl = cqHttpResouce.getServer() + HttpAPI.SEND_MESSAGE +
-                    "?message_type=" + messageType + "&user_id=" + userId + "&message=" + message;
+                    "?message_type=" + messageType + "&user_id=" + userId + "&message=" + message + "&auto_escape=" + autoEscape;
         }
 
         return restTemplate.getForObject(sendMessageUrl, SendMessageResultEntity.class);

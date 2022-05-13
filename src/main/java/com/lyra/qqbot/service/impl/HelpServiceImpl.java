@@ -13,10 +13,11 @@ public class HelpServiceImpl implements IHelpService {
     @Override
     public void sendHelpList(String messageType, Long groupId, Long userId) {
 
-        String stringBuilder = "1.随机面试题\n" +
-                "2.test\n" +
-                "3.test\n";
+        String stringBuilder = "1.随机面试题。\n" +
+                "2.随机色图。\n" +
+                "3.随机r18色图。\n" +
+                "4.获取七天内vpn签到信息。";
 
-        qqBotUtils.sendMessage(messageType, userId, groupId, stringBuilder);
+        qqBotUtils.sendMessage(messageType, userId, groupId, stringBuilder, true);
     }
 }

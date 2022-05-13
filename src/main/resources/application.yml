@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 365373011
-    url: jdbc:mysql://121.4.39.168:3306/qq_bot
+    url: jdbc:mysql://10.0.4.3:3306/qq_bot
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

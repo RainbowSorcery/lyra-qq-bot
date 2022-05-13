@@ -4,6 +4,7 @@ import com.lyra.qqbot.entity.Log;
 import com.lyra.qqbot.job.SignJob;
 import com.lyra.qqbot.service.IInterviewQuestionsService;
 import com.lyra.qqbot.service.ILogService;
+import com.lyra.qqbot.service.IRandomSexImgService;
 import com.lyra.qqbot.service.ISignService;
 import com.lyra.qqbot.utils.QQBotUtils;
 import org.junit.jupiter.api.Test;
@@ -15,10 +16,12 @@ import java.time.LocalDateTime;
 
 @SpringBootTest
 class QqBotApplicationTests {
-
+    @Autowired
+    private SignJob signJob;
 
     @Test
     void contextLoads() {
+        signJob.sign();
     }
 
 }

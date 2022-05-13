@@ -17,7 +17,7 @@ public class MyGraceExceptionHandle {
     @ExceptionHandler(value = MyGraceException.class)
     public void myExceptionHandle(MyGraceException myGraceException) {
 
-        qqBotUtils.sendMessage(myGraceException.getMessageType(), myGraceException.getUserId(), myGraceException.getGroupId(), myGraceException.getMessage());
+        qqBotUtils.sendMessage(myGraceException.getMessageType(), myGraceException.getUserId(), myGraceException.getGroupId(), myGraceException.getMessage(), true);
 
         log.warn("出现异常：{}", myGraceException.getMessage());
     }
