@@ -16,12 +16,9 @@ import java.time.LocalDateTime;
 
 @SpringBootTest
 class QqBotApplicationTests {
-    @Autowired
-    private SignJob signJob;
 
     @Test
     void contextLoads() {
-        signJob.sign();
     }
 
 }
