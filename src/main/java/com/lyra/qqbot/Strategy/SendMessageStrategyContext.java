@@ -24,12 +24,16 @@ public class SendMessageStrategyContext {
     @Autowired
     private SendRandomInterviewQuestionStrategy sendRandomInterviewQuestionStrategy;
 
+    @Autowired
+    private RandomPonyFeaturedImgStrategy randomPonyFeaturedImgStrategy;
+
 
     @PostConstruct
     public void initStrategyMap() {
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_HELP_MESSAGE.getMessage(), sendHelpStrategy);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_7_DAY_SIGN_MESSAGE.getMessage(), send7DayVpnSignMessage);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDOM_PREVIEW_QUESTION.getMessage(), sendRandomInterviewQuestionStrategy);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_PONY_FEATURED_IMG.getMessage(), randomPonyFeaturedImgStrategy);
     }
 
 

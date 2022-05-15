@@ -27,4 +27,17 @@ public class QQBotUtils {
 
         return restTemplate.getForObject(sendMessageUrl, SendMessageResultEntity.class);
     }
+
+    public SendMessageResultEntity sendImgMessage(String messageType, Long userId, Long groupId, String message, String imgUrl) {
+        String sendMessageUrl = "";
+        if (messageType.equals(MessageType.GROUP_MESSAGE.getType())) {
+            sendMessageUrl = cqHttpResouce.getServer() + HttpAPI.SEND_MESSAGE +
+                    "?message_type=" + messageType + "&group_id=" + groupId + "&message=" + "[CQ:image,file=" + imgUrl +"]" + message + "&auto_escape=" + false;
+        } else if (messageType.equals(MessageType.PRIVATE_MESSAGE.getType())) {
+            sendMessageUrl = cqHttpResouce.getServer() + HttpAPI.SEND_MESSAGE +
+                    "?message_type=" + messageType + "&user_id=" + userId + "&message=" + "[CQ:image,file=" + imgUrl +"]" + message + "&auto_escape=" + false;
+        }
+
+        return restTemplate.getForObject(sendMessageUrl, SendMessageResultEntity.class);
+    }
 }
