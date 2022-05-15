@@ -42,11 +42,14 @@ public class PonyImagePageProcessor implements PageProcessor {
         int randomPageNumber = (int) (Math.random() * pageNumber);
         url += "?page=" + randomPageNumber;
 
+        int randImageIndex = 0;
         if (pageTotal % 15 != 0 && randomPageNumber > (pageTotal / 15)) {
-
+            randImageIndex = (int) (Math.random() * (pageTotal % 15));
+        } else {
+            randImageIndex = (int) (Math.random() * 15);
         }
 
-        int randImageIndex = (int) (Math.random() * 15);
+
         ponyImageIndexProcess.setRandomNumber(randImageIndex);
         ponyImageIndexProcess.setSendPonyImageParam(messageType, userId, groupId);
 
