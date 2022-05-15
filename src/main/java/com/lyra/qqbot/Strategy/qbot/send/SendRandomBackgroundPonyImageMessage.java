@@ -1,33 +1,30 @@
-package com.lyra.qqbot;
+package com.lyra.qqbot.Strategy.qbot.send;
 
 import com.lyra.qqbot.cnstant.PonyImageConstant;
 import com.lyra.qqbot.common.enums.MessageType;
 import com.lyra.qqbot.processor.PonyImagePageProcessor;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
-@SpringBootTest
-class QqBotApplicationTests {
+@Component
+public class SendRandomBackgroundPonyImageMessage implements IQBotSendMessageServiceStrategy {
     @Autowired
     private PonyImagePageProcessor processor;
 
     @Autowired
     private ThreadPoolExecutor threadPoolExecutor;
 
-    @Test
-    void contextLoads() {
-        processor.setUrl("https://derpibooru.org/tags/fanfic-colon-background%2Bpony");
-        processor.setSendPonyImageParam(MessageType.PRIVATE_MESSAGE.getType(), 365373011L, 0L);
+    @Override
+    public void sendMessage(String messageType, Long groupId, Long userId) {
+        processor.setUrl("https://derpibooru.org/tags/" + PonyImageConstant.BACKGROUND_PONY);
+        processor.setSendPonyImageParam(messageType, userId, groupId);
         Spider.create(processor)
                 .addUrl("https://derpibooru.org/tags/" + PonyImageConstant.BACKGROUND_PONY)
                 .thread(threadPoolExecutor, 20)
                 .run();
 
-
     }
-
 }

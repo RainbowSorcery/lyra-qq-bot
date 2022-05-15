@@ -8,9 +8,12 @@ spring:
     password: 365373011
     url: jdbc:mysql://10.0.4.3:3306/qq_bot
   redis:
-    host: 121.4.39.168
+    host: 127.0.0.1
     port: 6379
-    password: 365373011
+    password: 990728
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com.lyra.qqbot.processor: debug

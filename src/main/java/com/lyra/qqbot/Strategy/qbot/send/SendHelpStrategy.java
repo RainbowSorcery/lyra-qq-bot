@@ -1,4 +1,4 @@
-package com.lyra.qqbot.Strategy;
+package com.lyra.qqbot.Strategy.qbot.send;
 
 import com.lyra.qqbot.service.IHelpService;
 import org.springframework.beans.factory.annotation.Autowired;

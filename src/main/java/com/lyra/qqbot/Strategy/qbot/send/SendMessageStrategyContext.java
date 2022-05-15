@@ -1,14 +1,14 @@
-package com.lyra.qqbot.Strategy;
+package com.lyra.qqbot.Strategy.qbot.send;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.lyra.qqbot.cnstant.QQBotServiceEnum;
+import com.lyra.qqbot.processor.PonyImagePageProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class SendMessageStrategyContext {
@@ -25,7 +25,11 @@ public class SendMessageStrategyContext {
     private SendRandomInterviewQuestionStrategy sendRandomInterviewQuestionStrategy;
 
     @Autowired
-    private RandomPonyFeaturedImgStrategy randomPonyFeaturedImgStrategy;
+    private PonyFeaturedImgStrategy ponyFeaturedImgStrategy;
+
+    @Autowired
+    private SendRandomBackgroundPonyImageMessage sendRandomBackgroundPonyImageMessage;
+
 
 
     @PostConstruct
@@ -33,14 +37,14 @@ public class SendMessageStrategyContext {
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_HELP_MESSAGE.getMessage(), sendHelpStrategy);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_7_DAY_SIGN_MESSAGE.getMessage(), send7DayVpnSignMessage);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDOM_PREVIEW_QUESTION.getMessage(), sendRandomInterviewQuestionStrategy);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_PONY_FEATURED_IMG.getMessage(), randomPonyFeaturedImgStrategy);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_PONY_FEATURED_IMG.getMessage(), ponyFeaturedImgStrategy);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_BACKGROUND_PONY_IMAGE.getMessage(), sendRandomBackgroundPonyImageMessage);
     }
 
 
     public IQBotSendMessageServiceStrategy getService(String type) {
         if (StringUtils.isNotEmpty(type)) {
-            IQBotSendMessageServiceStrategy iqBotSendMessageServiceStrategy = sendMessageServiceStrategyMap.get(type);
-            return iqBotSendMessageServiceStrategy;
+            return sendMessageServiceStrategyMap.get(type);
         }
 
         return null;

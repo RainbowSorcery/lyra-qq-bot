@@ -10,7 +10,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 @Component
 public class PonyFeaturedImageProcessor implements PageProcessor {
     @Autowired
-    private PonyFeatureImageFullProcessor ponyFeatureImageFullProcessor;
+    private FullPonyFeaturedImageFullProcessor fullPonyFeaturedImageFullProcessor;
 
     private Site site = Site.me()
             .setRetryTimes(3)
@@ -21,7 +21,7 @@ public class PonyFeaturedImageProcessor implements PageProcessor {
         String fullPageUrl = "https://derpibooru.org" + page.getHtml().xpath("/html/body/div/main/div/aside/div[1]/div/div[2]/div/a/@href");
         page.putField("PonyFeaturedImage", fullPageUrl);
 
-        Spider.create(ponyFeatureImageFullProcessor)
+        Spider.create(fullPonyFeaturedImageFullProcessor)
                 .addUrl(fullPageUrl)
                 .thread(5)
                 .run();

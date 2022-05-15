@@ -1,4 +1,4 @@
-package com.lyra.qqbot.Strategy;
+package com.lyra.qqbot.Strategy.qbot.send;
 
 import com.lyra.qqbot.cnstant.RedisCacheConstant;
 import com.lyra.qqbot.processor.PonyFeaturedImageProcessor;
@@ -9,8 +9,10 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
 
+import java.util.concurrent.ThreadPoolExecutor;
+
 @Component
-public class RandomPonyFeaturedImgStrategy implements IQBotSendMessageServiceStrategy {
+public class PonyFeaturedImgStrategy implements IQBotSendMessageServiceStrategy {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
@@ -20,6 +22,9 @@ public class RandomPonyFeaturedImgStrategy implements IQBotSendMessageServiceStr
     @Autowired
     private PonyFeaturedImageProcessor processor;
 
+    @Autowired
+    private ThreadPoolExecutor threadPoolExecutor;
+
     @Override
     public void sendMessage(String messageType, Long groupId, Long userId) {
         String featuredImgCache = redisTemplate.opsForValue().get(RedisCacheConstant.PONY_FEATURED_IMG_CACHE);
@@ -27,7 +32,7 @@ public class RandomPonyFeaturedImgStrategy implements IQBotSendMessageServiceStr
         if (StringUtils.isEmpty(featuredImgCache)) {
             Spider.create(processor)
                     .addUrl("https://derpibooru.org/")
-                    .thread(5)
+                    .thread(threadPoolExecutor, 20)
                     .run();
             featuredImgCache = redisTemplate.opsForValue().get(RedisCacheConstant.PONY_FEATURED_IMG_CACHE);
         }
