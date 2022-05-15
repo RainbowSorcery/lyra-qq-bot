@@ -1,30 +1,38 @@
 package com.lyra.qqbot.Strategy.qbot.send;
 
 import com.lyra.qqbot.cnstant.PonyImageConstant;
-import com.lyra.qqbot.common.enums.MessageType;
 import com.lyra.qqbot.processor.PonyImagePageProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Component
-public class SendRandomBackgroundPonyImageMessage implements IQBotSendMessageServiceStrategy {
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class SendRandomPonyImageMessage implements IQBotSendMessageServiceStrategy {
     @Autowired
     private PonyImagePageProcessor processor;
 
     @Autowired
     private ThreadPoolExecutor threadPoolExecutor;
 
+    private  String imageType;
+
     @Override
     public void sendMessage(String messageType, Long groupId, Long userId) {
-        processor.setUrl("https://derpibooru.org/tags/" + PonyImageConstant.BACKGROUND_PONY);
+        processor.setUrl("https://derpibooru.org/tags/" + imageType);
         processor.setSendPonyImageParam(messageType, userId, groupId);
         Spider.create(processor)
-                .addUrl("https://derpibooru.org/tags/" + PonyImageConstant.BACKGROUND_PONY)
+                .addUrl("https://derpibooru.org/tags/" + imageType)
                 .thread(threadPoolExecutor, 20)
                 .run();
 
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
     }
 }
