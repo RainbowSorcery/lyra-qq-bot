@@ -10,7 +10,8 @@ public enum QQBotServiceEnum {
     GET_TS_IMAGE("随机ts图"),
     GET_RD_IMAGE("随机rd图"),
     GET_RR_IMAGE("随机rr图"),
-    GET_SNOWDROP_IMAGE("随机落雪图")
+    GET_SNOWDROP_IMAGE("随机落雪图"),
+    GET_RANDDOM_PONY_MUSIC("随机小马音乐")
     ;
     private String message;
 

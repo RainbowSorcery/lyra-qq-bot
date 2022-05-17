@@ -40,4 +40,8 @@ public class QQBotUtils {
 
         return restTemplate.getForObject(sendMessageUrl, SendMessageResultEntity.class);
     }
+
+    public SendMessageResultEntity send163MusicMessage(String messageType, Long userId, Long groupId, Integer musicId) {
+        return this.sendMessage(messageType, userId, groupId, "[CQ:music,type=163,id=" + musicId +"]", false);
+    }
 }

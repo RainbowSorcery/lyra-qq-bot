@@ -45,6 +45,9 @@ public class SendMessageStrategyContext {
     @Autowired
     private SendRandomPonyImageMessage sendRandomSnowdropImageMessage;
 
+    @Autowired
+    private SendRandomMusicStrategy sendRandomMusicStrategy;
+
 
     @PostConstruct
     public void initStrategyMap() {
@@ -64,6 +67,7 @@ public class SendMessageStrategyContext {
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RR_IMAGE.getMessage(), sendRandomRRImageMessage);
         sendRandomSnowdropImageMessage.setImageType(PonyImageConstant.SNOWDROP);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_SNOWDROP_IMAGE.getMessage(), sendRandomSnowdropImageMessage);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDDOM_PONY_MUSIC.getMessage(), sendRandomMusicStrategy);
     }
 
 
