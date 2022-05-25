@@ -46,7 +46,20 @@ public class SendMessageStrategyContext {
     private SendRandomPonyImageMessage sendRandomSnowdropImageMessage;
 
     @Autowired
+    private SendRandomPonyImageMessage sendRandomNyxImageMessage;
+
+    @Autowired
+    private SendRandomPonyImageMessage sendRandomPinkiePieImageMessage;
+
+    @Autowired
+    private SendRandomPonyImageMessage sendRandomFluttershyImageMessage;
+
+    @Autowired
+    private SendRandomPonyImageMessage sendRandomApplejackImageMessage;
+
+    @Autowired
     private SendRandomMusicStrategy sendRandomMusicStrategy;
+
 
 
     @PostConstruct
@@ -67,7 +80,20 @@ public class SendMessageStrategyContext {
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RR_IMAGE.getMessage(), sendRandomRRImageMessage);
         sendRandomSnowdropImageMessage.setImageType(PonyImageConstant.SNOWDROP);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_SNOWDROP_IMAGE.getMessage(), sendRandomSnowdropImageMessage);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDDOM_PONY_MUSIC.getMessage(), sendRandomMusicStrategy);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDOM_PONY_MUSIC.getMessage(), sendRandomMusicStrategy);
+
+        sendRandomNyxImageMessage.setImageType(PonyImageConstant.NYX);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_NYX_IMAGE.getMessage(), sendRandomNyxImageMessage);
+        sendRandomPinkiePieImageMessage.setImageType(PonyImageConstant.PINKIE_PIE);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_PINKIE_PIE_IMAGE.getMessage(), sendRandomPinkiePieImageMessage);
+
+
+        sendRandomFluttershyImageMessage.setImageType(PonyImageConstant.FLUTTERSHY);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_FLUTTERSHY_IMAGE.getMessage(), sendRandomFluttershyImageMessage);
+
+
+        sendRandomApplejackImageMessage.setImageType(PonyImageConstant.APPLEJACK);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_APPLEJACK_IMAGE.getMessage(), sendRandomApplejackImageMessage);
     }
 
 

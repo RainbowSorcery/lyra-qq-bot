@@ -7,4 +7,8 @@ public class PonyImageConstant {
     public static final String RAINBOW_DASH = "rainbow+dash";
     public static final String RR = "rarity";
     public static final String SNOWDROP = "oc-colon-snowdrop";
+    public static final String NYX = "oc-colon-nyx";
+    public static final String PINKIE_PIE = "pinkie+pie";
+    public static final String FLUTTERSHY = "fluttershy";
+    public static final String APPLEJACK = "applejack";
 }

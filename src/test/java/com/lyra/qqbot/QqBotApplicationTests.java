@@ -3,6 +3,7 @@ package com.lyra.qqbot;
 import com.lyra.qqbot.cnstant.PonyImageConstant;
 import com.lyra.qqbot.common.enums.MessageType;
 import com.lyra.qqbot.entity.PonyMusic163;
+import com.lyra.qqbot.job.SignJob;
 import com.lyra.qqbot.mapper.PonyMusic163Mapper;
 import com.lyra.qqbot.processor.PonyImagePageProcessor;
 import com.lyra.qqbot.service.IPonyMusic163Service;
@@ -41,9 +42,12 @@ class QqBotApplicationTests {
     @Autowired
     private MusicProcessor musicProcessor;
 
+    @Autowired
+    private SignJob signJob;
+
     @Test
     public void musicTest() {
-
+        signJob.sign();
     }
 
     @Test
@@ -59,14 +63,17 @@ class QqBotApplicationTests {
 
         Music body1 = jsonObjectResponseEntity.getBody();
 
-        body1.getPrivileges().forEach((e) -> {
-            musicProcessor.setId(e.getId());
-            Spider.create(musicProcessor)
-                    .addUrl("https://music.163.com/song?id=" + e.getId())
-                    .thread(threadPoolExecutor, 20)
-                    .run();
+        if (body1 != null) {
+            body1.getPrivileges().forEach((e) -> {
+                musicProcessor.setId(e.getId());
+                Spider.create(musicProcessor)
+                        .addUrl("https://music.163.com/song?id=" + e.getId())
+                        .thread(threadPoolExecutor, 20)
+                        .run();
 
-        });
+            });
+        }
+
     }
 
     public static class Music {
@@ -146,7 +153,7 @@ class MusicProcessor implements PageProcessor {
     private IPonyMusic163Service ponyMusic163Service;
 
     private Integer id;
-    private Site site = Site.me()
+    private final Site site = Site.me()
             .setRetryTimes(3)
             .setSleepTime(1000);
 
