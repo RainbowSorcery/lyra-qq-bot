@@ -27,7 +27,7 @@ public class SendRandomPonyImageMessage implements IQBotSendMessageServiceStrate
         processor.setSendPonyImageParam(messageType, userId, groupId);
         Spider.create(processor)
                 .addUrl("https://derpibooru.org/tags/" + imageType)
-                .thread(threadPoolExecutor, 20)
+                .thread(threadPoolExecutor, 50)
                 .run();
 
     }

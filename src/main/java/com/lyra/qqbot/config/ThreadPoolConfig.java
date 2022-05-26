@@ -13,7 +13,7 @@ public class ThreadPoolConfig {
     @Bean
     public ThreadPoolExecutor threadPoolExecutor() {
         return new ThreadPoolExecutor(20,
-                50,
+                100,
                 10,
                 TimeUnit.SECONDS,
                 new LinkedBlockingDeque<>(100),

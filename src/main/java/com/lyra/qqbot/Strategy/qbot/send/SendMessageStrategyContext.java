@@ -58,6 +58,9 @@ public class SendMessageStrategyContext {
     private SendRandomPonyImageMessage sendRandomApplejackImageMessage;
 
     @Autowired
+    private SendRandomPonyImageMessage sendRandomLunaImageMessage;
+
+    @Autowired
     private SendRandomMusicStrategy sendRandomMusicStrategy;
 
 
@@ -94,6 +97,9 @@ public class SendMessageStrategyContext {
 
         sendRandomApplejackImageMessage.setImageType(PonyImageConstant.APPLEJACK);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_APPLEJACK_IMAGE.getMessage(), sendRandomApplejackImageMessage);
+
+        sendRandomLunaImageMessage.setImageType(PonyImageConstant.LUNA);
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_LUNA_IMAGE.getMessage(), sendRandomLunaImageMessage);
     }
 
 

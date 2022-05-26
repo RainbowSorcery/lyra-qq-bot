@@ -11,4 +11,5 @@ public class PonyImageConstant {
     public static final String PINKIE_PIE = "pinkie+pie";
     public static final String FLUTTERSHY = "fluttershy";
     public static final String APPLEJACK = "applejack";
+    public static final String LUNA = "princess+luna";
 }
