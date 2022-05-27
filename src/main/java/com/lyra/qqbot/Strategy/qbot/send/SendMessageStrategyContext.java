@@ -63,6 +63,9 @@ public class SendMessageStrategyContext {
     @Autowired
     private SendRandomMusicStrategy sendRandomMusicStrategy;
 
+    @Autowired
+    private SendTrendingPonyImageStrategy sendTrendingPonyImageStrategy;
+
 
 
     @PostConstruct
@@ -100,6 +103,8 @@ public class SendMessageStrategyContext {
 
         sendRandomLunaImageMessage.setImageType(PonyImageConstant.LUNA);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_LUNA_IMAGE.getMessage(), sendRandomLunaImageMessage);
+
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_TRENDING_PONY_IMAGE.getMessage(), sendTrendingPonyImageStrategy);
     }
 
 

@@ -16,7 +16,8 @@ public enum QQBotServiceEnum {
     GET_FLUTTERSHY_IMAGE("随机fs图"),
     GET_APPLEJACK_IMAGE("随机aj图"),
     GET_LUNA_IMAGE("随机luna图"),
-    GET_RANDOM_PONY_MUSIC("随机小马音乐")
+    GET_RANDOM_PONY_MUSIC("随机小马音乐"),
+    GET_TRENDING_PONY_IMAGE("热门小马图片")
     ;
     private String message;
 

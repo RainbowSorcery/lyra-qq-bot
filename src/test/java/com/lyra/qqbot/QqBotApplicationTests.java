@@ -1,15 +1,9 @@
 package com.lyra.qqbot;
 
-import com.lyra.qqbot.cnstant.PonyImageConstant;
-import com.lyra.qqbot.common.enums.MessageType;
 import com.lyra.qqbot.entity.PonyMusic163;
-import com.lyra.qqbot.job.SignJob;
-import com.lyra.qqbot.mapper.PonyMusic163Mapper;
-import com.lyra.qqbot.processor.PonyImagePageProcessor;
+import com.lyra.qqbot.processor.RandomTrendingPonyImage;
 import com.lyra.qqbot.service.IPonyMusic163Service;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Headers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -23,10 +17,6 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -43,11 +33,12 @@ class QqBotApplicationTests {
     private MusicProcessor musicProcessor;
 
     @Autowired
-    private SignJob signJob;
+    private RandomTrendingPonyImage randomTrendingPonyImage;
 
     @Test
     public void musicTest() {
-        signJob.sign();
+
+
     }
 
     @Test
