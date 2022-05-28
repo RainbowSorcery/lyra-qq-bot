@@ -1,5 +1,6 @@
 package com.lyra.qqbot.service.impl;
 
+import com.lyra.qqbot.cnstant.QQBotServiceEnum;
 import com.lyra.qqbot.service.IHelpService;
 import com.lyra.qqbot.utils.QQBotUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,14 @@ public class HelpServiceImpl implements IHelpService {
     @Override
     public void sendHelpList(String messageType, Long groupId, Long userId) {
 
-        String stringBuilder = "1.随机面试题。\n" +
-                "2.随机色图。\n" +
-                "3.随机r18色图。\n" +
-                "4.获取七天内vpn签到信息。";
+        StringBuilder stringBuilder = new StringBuilder();
 
-        qqBotUtils.sendMessage(messageType, userId, groupId, stringBuilder, true);
+        int i = 0;
+        for (QQBotServiceEnum value : QQBotServiceEnum.values()) {
+            i++;
+            stringBuilder.append(i).append(".").append(value.getMessage()).append("。\n");
+        }
+
+        qqBotUtils.sendMessage(messageType, userId, groupId, stringBuilder.toString(), true);
     }
 }
