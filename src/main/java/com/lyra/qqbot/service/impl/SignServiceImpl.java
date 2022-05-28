@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lyra.qqbot.common.constance.UriConstance;
 import com.lyra.qqbot.entity.*;
 import com.lyra.qqbot.mapper.LogMapper;
+import com.lyra.qqbot.service.AuthService;
 import com.lyra.qqbot.service.ILogService;
 import com.lyra.qqbot.service.ISignService;
 import com.lyra.qqbot.utils.QQBotUtils;
@@ -24,6 +25,9 @@ import java.util.stream.Collectors;
 @Service
 public class SignServiceImpl implements ISignService {
     private static final Logger log = LoggerFactory.getLogger(SignServiceImpl.class);
+
+    @Autowired
+    private AuthService authService;
 
     @Autowired
     private LogMapper logMapper;
@@ -79,9 +83,7 @@ public class SignServiceImpl implements ISignService {
 
         StringBuffer stringBuffer = new StringBuffer();
         if (loginCookie != null) {
-            loginCookie.forEach((cookie) -> {
-                stringBuffer.append(cookie).append(";");
-            });
+            loginCookie.forEach((cookie) -> stringBuffer.append(cookie).append(";"));
         }
 
         return stringBuffer.toString();
@@ -106,12 +108,16 @@ public class SignServiceImpl implements ISignService {
 
     @Override
     public void get7TotalSignLog(String messageType, Long groupId, Long userId) {
-        List<Log> logList = logMapper.get7TotalSignLog();
+        if (authService.auth(userId)) {
+            List<Log> logList = logMapper.get7TotalSignLog();
 
-        String logMessage = logList.stream().map((e) -> {
-            return e.getLog() + "\t" + e.getCreateDate() + "\n";
-        }).collect(Collectors.joining());
+            String logMessage = logList.stream().map((e) -> e.getLog() + "\t" + e.getCreateDate() + "\n").collect(Collectors.joining());
 
-        qqBotUtils.sendMessage(messageType, userId, groupId, logMessage, true);
+            qqBotUtils.sendMessage(messageType, userId, groupId, logMessage, true);
+        } else {
+            qqBotUtils.sendMessage(messageType, userId, groupId, "该用户不是管理员，没有该指令权限。", true);
+        }
+
+
     }
 }
