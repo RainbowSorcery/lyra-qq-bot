@@ -2,6 +2,7 @@ package com.lyra.qqbot.processor;
 
 import com.lyra.qqbot.utils.QQBotUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -12,6 +13,9 @@ public class FullPonyImageProcessor implements PageProcessor {
     private String messageType;
     private Long userId;
     private Long groupId;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Autowired
     private QQBotUtils qqBotUtils;
@@ -26,6 +30,7 @@ public class FullPonyImageProcessor implements PageProcessor {
         String xpath = "/html/body/div/main/div[1]/div[1]/div[4]/a[3]/@href";
         String s = page.getHtml().xpath(xpath).get();
         page.putField("fullPonyImage", page.getHtml().xpath(xpath));
+
 
         qqBotUtils.sendImgMessage(messageType, userId, groupId,  "", s);
     }
