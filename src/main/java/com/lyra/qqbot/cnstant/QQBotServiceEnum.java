@@ -1,7 +1,6 @@
 package com.lyra.qqbot.cnstant;
 
 public enum QQBotServiceEnum {
-    GET_RANDOM_PREVIEW_QUESTION("随机面试题"),
     GET_HELP_MESSAGE("/help"),
     GET_7_DAY_SIGN_MESSAGE("获取七天内vpn签到信息"),
     GET_PONY_FEATURED_IMG("获取特殊小马图片"),
@@ -17,7 +16,8 @@ public enum QQBotServiceEnum {
     GET_APPLEJACK_IMAGE("随机aj图"),
     GET_LUNA_IMAGE("随机luna图"),
     GET_RANDOM_PONY_MUSIC("随机小马音乐"),
-    GET_TRENDING_PONY_IMAGE("热门小马图片")
+    GET_TRENDING_PONY_IMAGE("热门小马图片"),
+    GET_RANDOM_SEX_IMAGE("随机色图")
     ;
     private String message;
 

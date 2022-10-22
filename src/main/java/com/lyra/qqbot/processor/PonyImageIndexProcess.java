@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.downloader.HttpClientDownloader;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -23,6 +24,9 @@ public class PonyImageIndexProcess implements PageProcessor {
     @Autowired
     private FullPonyImageProcessor fullPonyImageProcessor;
 
+    @Autowired
+    private HttpClientDownloader httpClientDownloader;
+
     private final Site site = Site.me()
             .setRetryTimes(3)
             .setSleepTime(1000);
@@ -35,6 +39,7 @@ public class PonyImageIndexProcess implements PageProcessor {
         fullPonyImageProcessor.setSendPonyImageParam(messageType, userId, groupId);
 
         Spider.create(fullPonyImageProcessor)
+                .setDownloader(httpClientDownloader)
                 .addUrl(randomPonyImageUrl)
                 .thread(threadPoolExecutor, 20)
                 .run();

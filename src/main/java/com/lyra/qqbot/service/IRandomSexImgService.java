@@ -1,5 +1,7 @@
 package com.lyra.qqbot.service;
 
-public interface IRandomSexImgService {
-    void getRandomSexImg(String messageType, Long groupId, Long userId, boolean r18);
+import com.lyra.qqbot.Strategy.qbot.send.IQBotSendMessageServiceStrategy;
+
+public interface IRandomSexImgService extends IQBotSendMessageServiceStrategy {
+    void getRandomSexImg(String messageType, Long groupId, Long userId);
 }

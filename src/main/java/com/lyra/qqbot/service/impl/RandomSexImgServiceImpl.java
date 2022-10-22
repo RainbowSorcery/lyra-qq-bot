@@ -5,12 +5,16 @@ import com.lyra.qqbot.entity.SexImgEntity;
 import com.lyra.qqbot.exception.MyGraceException;
 import com.lyra.qqbot.service.IRandomSexImgService;
 import com.lyra.qqbot.utils.QQBotUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+
 @Service
 public class RandomSexImgServiceImpl implements IRandomSexImgService {
+    private static final Logger log = LoggerFactory.getLogger(RandomSexImgServiceImpl.class);
     @Autowired
     private RestTemplate restTemplate;
 
@@ -18,16 +22,21 @@ public class RandomSexImgServiceImpl implements IRandomSexImgService {
     private QQBotUtils qqBotUtils;
 
     @Override
-    public void getRandomSexImg(String messageType, Long groupId, Long userId, boolean r18) {
-        SexImgEntity forObject = restTemplate.getForObject("https://api.nyan.xyz/httpapi/sexphoto?r18=" + r18, SexImgEntity.class);
+    public void getRandomSexImg(String messageType, Long groupId, Long userId) {
+        SexImgEntity forObject = restTemplate.getForObject("https://api.lolicon.app/setu/v2?r18=2", SexImgEntity.class);
 
         if (forObject == null) {
             throw new MyGraceException("图片获取失败.", messageType, userId, groupId);
         }
-        SexImgEntity.Data data = forObject.getData();
-        String sexImgUrl = data.getUrl().get(0);
+        SexImgEntity.SexImgData data = forObject.getData().get(0);
+        String sexImgUrl = data.getUrls().getOriginal();
         String sendMessage ="[CQ:image,file=" + sexImgUrl +"]";
         SendMessageResultEntity sendMessageResultEntity = qqBotUtils.sendMessage(messageType, userId, groupId, sendMessage, false);
 
+    }
+
+    @Override
+    public void sendMessage(String messageType, Long groupId, Long userId) {
+        getRandomSexImg(messageType, groupId, userId);
     }
 }

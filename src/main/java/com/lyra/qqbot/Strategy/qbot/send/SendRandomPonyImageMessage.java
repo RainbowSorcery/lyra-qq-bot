@@ -7,6 +7,9 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.downloader.HttpClientDownloader;
+import us.codecraft.webmagic.proxy.Proxy;
+import us.codecraft.webmagic.proxy.SimpleProxyProvider;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -21,13 +24,19 @@ public class SendRandomPonyImageMessage implements IQBotSendMessageServiceStrate
 
     private  String imageType;
 
+    @Autowired
+    private HttpClientDownloader httpClientDownloader;
+
     @Override
     public void sendMessage(String messageType, Long groupId, Long userId) {
+
+
         processor.setUrl("https://derpibooru.org/tags/" + imageType);
         processor.setSendPonyImageParam(messageType, userId, groupId);
         Spider.create(processor)
                 .addUrl("https://derpibooru.org/tags/" + imageType)
                 .thread(threadPoolExecutor, 50)
+                .setDownloader(httpClientDownloader)
                 .run();
 
     }
