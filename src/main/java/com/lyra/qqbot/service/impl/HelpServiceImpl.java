@@ -1,6 +1,6 @@
 package com.lyra.qqbot.service.impl;
 
-import com.lyra.qqbot.cnstant.QQBotServiceEnum;
+import com.lyra.qqbot.common.enums.QQBotServiceEnum;
 import com.lyra.qqbot.service.IHelpService;
 import com.lyra.qqbot.utils.QQBotUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package com.lyra.qqbot;
 
 import com.lyra.qqbot.entity.PonyMusic163;
+import com.lyra.qqbot.job.SignJob;
 import com.lyra.qqbot.processor.RandomTrendingPonyImage;
 import com.lyra.qqbot.service.IPonyMusic163Service;
 import org.junit.jupiter.api.Test;
@@ -35,10 +36,20 @@ class QqBotApplicationTests {
     @Autowired
     private RandomTrendingPonyImage randomTrendingPonyImage;
 
+    @Autowired
+    private SignJob signJob;
+
+
     @Test
     public void musicTest() {
 
 
+    }
+
+
+    @Test
+    public void signJobTest() {
+        signJob.sign();
     }
 
     @Test

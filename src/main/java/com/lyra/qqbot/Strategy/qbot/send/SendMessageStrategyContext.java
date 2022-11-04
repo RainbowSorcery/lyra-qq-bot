@@ -2,7 +2,7 @@ package com.lyra.qqbot.Strategy.qbot.send;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.lyra.qqbot.cnstant.PonyImageConstant;
-import com.lyra.qqbot.cnstant.QQBotServiceEnum;
+import com.lyra.qqbot.common.enums.QQBotServiceEnum;
 import com.lyra.qqbot.service.IRandomSexImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -106,7 +106,7 @@ public class SendMessageStrategyContext {
 
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_TRENDING_PONY_IMAGE.getMessage(), sendTrendingPonyImageStrategy);
 
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDOM_SEX_IMAGE.getMessage(), randomSexImgService);
+//        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDOM_SEX_IMAGE.getMessage(), randomSexImgService);
     }
 
 

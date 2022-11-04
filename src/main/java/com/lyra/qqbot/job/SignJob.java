@@ -21,7 +21,7 @@ public class SignJob  {
     @Scheduled(cron = "0 0 0 * * ? ")
     public void sign() {
         List<User> userList = userService.list();
-        signService.setUrl("https://portal.touhou.tel/");
+        signService.setUrl("https://panel2.touhou.tel/");
 
         userList.forEach((e) -> {
             String cookie = signService.login(e);
