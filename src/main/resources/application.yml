@@ -6,9 +6,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 365373011
-    url: jdbc:mysql://127.0.0.1:3306/qq_bot
+    url: jdbc:mysql://192.168.18.191:3306/qq_bot
   redis:
-    host: 127.0.0.1
+    host: 192.168.
     port: 6379
     password: 365373011
 mybatis-plus:
