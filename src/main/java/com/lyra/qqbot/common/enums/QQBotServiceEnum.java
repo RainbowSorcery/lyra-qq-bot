@@ -1,4 +1,4 @@
-package com.lyra.qqbot.cnstant;
+package com.lyra.qqbot.common.enums;
 
 public enum QQBotServiceEnum {
     GET_HELP_MESSAGE("/help"),
@@ -17,7 +17,7 @@ public enum QQBotServiceEnum {
     GET_LUNA_IMAGE("随机luna图"),
     GET_RANDOM_PONY_MUSIC("随机小马音乐"),
     GET_TRENDING_PONY_IMAGE("热门小马图片"),
-    GET_RANDOM_SEX_IMAGE("随机色图")
+//    GET_RANDOM_SEX_IMAGE("随机色图")
     ;
     private String message;
 

@@ -39,10 +39,20 @@ class QqBotApplicationTests {
     @Autowired
     private SignJob job;
 
+    @Autowired
+    private SignJob signJob;
+
+
     @Test
     public void musicTest() {
-        job.sign();
 
+
+    }
+
+
+    @Test
+    public void signJobTest() {
+        signJob.sign();
     }
 
     @Test

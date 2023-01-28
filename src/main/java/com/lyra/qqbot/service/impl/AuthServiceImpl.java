@@ -20,7 +20,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public Boolean auth(Long qq) {
         List<AdminUser> adminUsers = adminUserMapper.selectList(null);
-        List<AdminUser> collect = adminUsers.stream().filter((adminUser -> Objects.equals(adminUser.getQq(), qq))).collect(Collectors.toList());
+        List<AdminUser> collect = adminUsers.stream().filter((adminUser -> Objects.equals(adminUser.getQq(), qq))).toList();
 
         return collect.size() > 0;
     }
