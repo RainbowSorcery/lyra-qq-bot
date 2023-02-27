@@ -3,6 +3,7 @@ package com.lyra.qqbot.Strategy.qbot.send;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.lyra.qqbot.cnstant.PonyImageConstant;
 import com.lyra.qqbot.common.enums.QQBotServiceEnum;
+import com.lyra.qqbot.config.PonyWebCrawiersConfig;
 import com.lyra.qqbot.service.IRandomSexImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -67,44 +68,50 @@ public class SendMessageStrategyContext {
     @Autowired
     private IRandomSexImgService randomSexImgService;
 
+    @Autowired
+    PonyWebCrawiersConfig ponyWebCrawiersConfig;
 
 
     @PostConstruct
     public void initStrategyMap() {
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_HELP_MESSAGE.getMessage(), sendHelpStrategy);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_7_DAY_SIGN_MESSAGE.getMessage(), send7DayVpnSignMessage);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_PONY_FEATURED_IMG.getMessage(), ponyFeaturedImgStrategy);
-        sendRandomBackgroundPonyImageMessage.setImageType(PonyImageConstant.BACKGROUND_PONY);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_BACKGROUND_PONY_IMAGE.getMessage(), sendRandomBackgroundPonyImageMessage);
-        sendRandomLyraHeartstringsImageMessage.setImageType(PonyImageConstant.LYRA_PONY);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_LYRA_HEARTSTRINGS_IMAGE.getMessage(), sendRandomLyraHeartstringsImageMessage);
-        sendRandomTSImageMessage.setImageType(PonyImageConstant.TWILIGHT_SPARKLE);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_TS_IMAGE.getMessage(), sendRandomTSImageMessage);
-        sendRandomRDImageMessage.setImageType(PonyImageConstant.RAINBOW_DASH);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RD_IMAGE.getMessage(), sendRandomRDImageMessage);
-        sendRandomRRImageMessage.setImageType(PonyImageConstant.RR);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RR_IMAGE.getMessage(), sendRandomRRImageMessage);
-        sendRandomSnowdropImageMessage.setImageType(PonyImageConstant.SNOWDROP);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_SNOWDROP_IMAGE.getMessage(), sendRandomSnowdropImageMessage);
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDOM_PONY_MUSIC.getMessage(), sendRandomMusicStrategy);
+//        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_7_DAY_SIGN_MESSAGE.getMessage(), send7DayVpnSignMessage);
 
-        sendRandomNyxImageMessage.setImageType(PonyImageConstant.NYX);
+// todo
+//        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_TRENDING_PONY_IMAGE.getMessage(), sendTrendingPonyImageStrategy);
+//        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_PONY_FEATURED_IMG.getMessage(), ponyFeaturedImgStrategy);
+
+        sendRandomBackgroundPonyImageMessage.setImageType(ponyWebCrawiersConfig.getRandomBackgroundPonyImage());
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_BACKGROUND_PONY_IMAGE.getMessage(), sendRandomBackgroundPonyImageMessage);
+        sendRandomLyraHeartstringsImageMessage.setImageType(ponyWebCrawiersConfig.getRandomLyraImg());
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_LYRA_HEARTSTRINGS_IMAGE.getMessage(), sendRandomLyraHeartstringsImageMessage);
+        sendRandomTSImageMessage.setImageType(ponyWebCrawiersConfig.getRandomTSImage());
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_TS_IMAGE.getMessage(), sendRandomTSImageMessage);
+        sendRandomRDImageMessage.setImageType(ponyWebCrawiersConfig.getRandomRDImage());
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RD_IMAGE.getMessage(), sendRandomRDImageMessage);
+        sendRandomRRImageMessage.setImageType(ponyWebCrawiersConfig.getRandomRRImage());
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RR_IMAGE.getMessage(), sendRandomRRImageMessage);
+        sendRandomSnowdropImageMessage.setImageType(ponyWebCrawiersConfig.getRandomSnowdropImage());
+        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_SNOWDROP_IMAGE.getMessage(), sendRandomSnowdropImageMessage);
+
+        sendRandomNyxImageMessage.setImageType(ponyWebCrawiersConfig.getRandomNyxImage());
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_NYX_IMAGE.getMessage(), sendRandomNyxImageMessage);
-        sendRandomPinkiePieImageMessage.setImageType(PonyImageConstant.PINKIE_PIE);
+        sendRandomPinkiePieImageMessage.setImageType(ponyWebCrawiersConfig.getRandomPinkiePieImage());
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_PINKIE_PIE_IMAGE.getMessage(), sendRandomPinkiePieImageMessage);
 
 
-        sendRandomFluttershyImageMessage.setImageType(PonyImageConstant.FLUTTERSHY);
+        sendRandomFluttershyImageMessage.setImageType(ponyWebCrawiersConfig.getRandomFlutterShyPieImage());
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_FLUTTERSHY_IMAGE.getMessage(), sendRandomFluttershyImageMessage);
 
 
         sendRandomApplejackImageMessage.setImageType(PonyImageConstant.APPLEJACK);
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_APPLEJACK_IMAGE.getMessage(), sendRandomApplejackImageMessage);
 
-        sendRandomLunaImageMessage.setImageType(PonyImageConstant.LUNA);
+        sendRandomLunaImageMessage.setImageType(ponyWebCrawiersConfig.getRandomLunaImage());
         sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_LUNA_IMAGE.getMessage(), sendRandomLunaImageMessage);
 
-        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_TRENDING_PONY_IMAGE.getMessage(), sendTrendingPonyImageStrategy);
+//        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDOM_PONY_MUSIC.getMessage(), sendRandomMusicStrategy);
+
 
 //        sendMessageServiceStrategyMap.put(QQBotServiceEnum.GET_RANDOM_SEX_IMAGE.getMessage(), randomSexImgService);
     }

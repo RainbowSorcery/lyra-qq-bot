@@ -6,9 +6,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 365373011
-    url: jdbc:mysql://192.168.18.191:3306/qq_bot
+    url: jdbc:mysql://192.168.1.143:3306/qq_bot
   redis:
-    host: 192.168.
+    host: 192.168.1.143
     port: 6379
     password: 365373011
 mybatis-plus:
@@ -17,3 +17,19 @@ mybatis-plus:
 logging:
   level:
     com.lyra.qqbot.processor: debug
+
+random-pony-image-api:
+  url: http://192.168.1.143:7979
+  group: /randomImage/pony
+  randomLyraImg: /randomLyraImg
+  randomBackgroundPonyImage: /randomBackgroundPonyImage
+  randomTSImage: /RandomTSImage
+  randomRDImage: /RandomRDImage
+  randomRRImage: /RandomRRImage
+  randomSnowdropImage: /RandomSnowdropImage
+  randomNyxImage: /RandomNyxImage
+  randomPinkiePieImage: /RandomPinkiePieImage
+  randomFlutterShyPieImage: /RandomFlutterShyPieImage
+  randomAppleJackPieImage: /RandomAppleJackPieImage
+  randomLunaImage: /RandomLunaImage
+  getRandomPonyImageToTag: /GetRandomPonyImageToTag

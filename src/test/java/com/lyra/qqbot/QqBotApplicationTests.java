@@ -1,5 +1,6 @@
 package com.lyra.qqbot;
 
+import com.lyra.qqbot.config.PonyWebCrawiersConfig;
 import com.lyra.qqbot.entity.PonyMusic163;
 import com.lyra.qqbot.job.SignJob;
 import com.lyra.qqbot.processor.RandomTrendingPonyImage;
@@ -23,6 +24,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 @SpringBootTest
 class QqBotApplicationTests {
+    @Autowired
+    private PonyWebCrawiersConfig ponyWebCrawiersConfigw;
 
     @Autowired
     private ThreadPoolExecutor threadPoolExecutor;
@@ -52,7 +55,8 @@ class QqBotApplicationTests {
 
     @Test
     public void signJobTest() {
-        signJob.sign();
+        String group = ponyWebCrawiersConfigw.getGroup();
+        System.out.println(group);
     }
 
     @Test
